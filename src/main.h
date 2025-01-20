@@ -56,6 +56,8 @@ int tiles_count = 0;
 
 Tetromino active_tetromino;
 
+TetrominoTypes next_tetromino = TETROMINO_O;
+
 int score = 0;
 int lines_cleared = 0;
 

@@ -30,6 +30,24 @@ void render(SDL_Texture * texture, SDL_Rect img_rect, float p_x, float p_y)
 	SDL_RenderCopy(drawing_context.renderer, texture, &src, &dst);
 }
 
+void render_scaled(SDL_Texture * texture, SDL_Rect img_rect, float p_x, float p_y, float render_scale)
+{
+	SDL_Rect src;
+	src.x = img_rect.x;
+	src.y = img_rect.y;
+
+	src.w = img_rect.w;
+	src.h = img_rect.h;
+
+	SDL_Rect dst;
+	dst.x = p_x * render_scale;
+	dst.y = p_y * render_scale;
+	dst.w = src.w * render_scale;
+	dst.h = src.h * render_scale;
+
+	SDL_RenderCopy(drawing_context.renderer, texture, &src, &dst);
+}
+
 
 void render_text(const char * text, TTF_Font * font, SDL_Color text_color, int x, int y, TextOrientation orientation)
 {

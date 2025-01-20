@@ -221,13 +221,13 @@ int set_tetromino(Tetromino * tetromino, Tile * tiles, int tiles_count, Tetromin
 
 	for (int i = 0; i < 4; i++)
 	{
-		tiles_count = add_tile(coordinates[i][0] * TILESIZE, coordinates[i][1] * TILESIZE, tiles, tiles_count, type_int);
+		tiles_count = add_tile(coordinates[i][0] * TILESIZE + 3 * TILESIZE, coordinates[i][1] * TILESIZE, tiles, tiles_count, type_int);
 		tetromino->active_tiles[i] = &tiles[tiles_count - 1];
 	}
 
 	tetromino->type = type;
 
-	tetromino->x = 0;
+	tetromino->x = 3 * TILESIZE;
 	tetromino->y = 0;
 
 	return tiles_count;
@@ -246,17 +246,17 @@ void get_tetrominos(TetrominoTypes type, int coordinates[4][2]) {
 
 		case TETROMINO_J:
 
-			coordinates[0][0] = 0; coordinates[0][1] = 0;
-			coordinates[1][0] = 0; coordinates[1][1] = 1;
-			coordinates[2][0] = 1; coordinates[2][1] = 1;
-			coordinates[3][0] = 2; coordinates[3][1] = 1;
+			coordinates[0][0] = 0; coordinates[0][1] = 1;
+			coordinates[1][0] = 1; coordinates[1][1] = 1;
+			coordinates[2][0] = 2; coordinates[2][1] = 1;
+			coordinates[3][0] = 2; coordinates[3][1] = 2;
 			break;
 
 		case TETROMINO_L:
 
-			coordinates[0][0] = 0; coordinates[0][1] = 2;
-			coordinates[1][0] = 1; coordinates[1][1] = 2;
-			coordinates[2][0] = 2; coordinates[2][1] = 2;
+			coordinates[0][0] = 0; coordinates[0][1] = 1;
+			coordinates[1][0] = 0; coordinates[1][1] = 2;
+			coordinates[2][0] = 1; coordinates[2][1] = 1;
 			coordinates[3][0] = 2; coordinates[3][1] = 1;
 			break;
 
@@ -270,26 +270,26 @@ void get_tetrominos(TetrominoTypes type, int coordinates[4][2]) {
 
 		case TETROMINO_S:
 
-			coordinates[0][0] = 0; coordinates[0][1] = 1;
-			coordinates[1][0] = 0; coordinates[1][1] = 2;
-			coordinates[2][0] = 1; coordinates[2][1] = 0;
-			coordinates[3][0] = 1; coordinates[3][1] = 1;
+			coordinates[0][0] = 0; coordinates[0][1] = 2;
+			coordinates[1][0] = 1; coordinates[1][1] = 1;
+			coordinates[2][0] = 1; coordinates[2][1] = 2;
+			coordinates[3][0] = 2; coordinates[3][1] = 1;
 			break;
 
 		case TETROMINO_T:
 
 			coordinates[0][0] = 0; coordinates[0][1] = 1;
-			coordinates[1][0] = 1; coordinates[1][1] = 0;
-			coordinates[2][0] = 1; coordinates[2][1] = 1;
-			coordinates[3][0] = 1; coordinates[3][1] = 2;
+			coordinates[1][0] = 1; coordinates[1][1] = 1;
+			coordinates[2][0] = 1; coordinates[2][1] = 2;
+			coordinates[3][0] = 2; coordinates[3][1] = 1;
 			break;
 
 		case TETROMINO_Z:
 
-			coordinates[0][0] = 0; coordinates[0][1] = 0;
-			coordinates[1][0] = 0; coordinates[1][1] = 1;
-			coordinates[2][0] = 1; coordinates[2][1] = 1;
-			coordinates[3][0] = 1; coordinates[3][1] = 2;
+			coordinates[0][0] = 0; coordinates[0][1] = 1;
+			coordinates[1][0] = 1; coordinates[1][1] = 1;
+			coordinates[2][0] = 1; coordinates[2][1] = 2;
+			coordinates[3][0] = 2; coordinates[3][1] = 2;
 			break;
 		
 	}

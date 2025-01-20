@@ -17,8 +17,8 @@ typedef struct
 {
 	Tile * active_tiles[4];
 
-	int x = 0;
-	int y = 0;
+	int x;
+	int y;
 
 	TetrominoTypes type;
 

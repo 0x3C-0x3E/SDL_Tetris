@@ -248,7 +248,8 @@ int run()
 			if (result== 1)
 			{
 				check_for_lines_cleared();
-				set_tetromino(&active_tetromino, tiles, tiles_count, (TetrominoTypes)(rand() % 7));
+				set_tetromino(&active_tetromino, tiles, tiles_count, next_tetromino);
+				next_tetromino = (TetrominoTypes) (rand() % 7);
 				tiles_count += 4;
 
 			}
@@ -280,7 +281,7 @@ int run()
 
 
 
-		render_text("Tetris!", font, (SDL_Color) {66, 66, 255}, 500, 100, centered);
+		render_text("Tetris!", font, (SDL_Color) {255, 255, 255}, 500, 100, centered);
 
 
 		char buffer[256];
@@ -294,6 +295,29 @@ int run()
 
 		render_text("Lines:", font, (SDL_Color) {255, 255, 255}, 500, 350, centered);
 		render_text(buffer, font, (SDL_Color) {160, 35, 30}, 500, 390, centered);
+
+
+		render_text("Next:", font, (SDL_Color) {255, 255, 255}, 500, 500, centered);
+
+		int coordinates[4][2];
+		get_tetrominos(next_tetromino, coordinates);
+
+		int add_x = 500 - 36;
+		if (next_tetromino == TETROMINO_O)
+		{
+			add_x = 500 - 21;
+		}
+
+		if (next_tetromino == TETROMINO_I)
+		{
+			add_x = 500 - 48;
+		}
+
+		for (int i = 0; i < 4; i++)
+		{
+			render_scaled(drawing_context.tileset, {0, (int) next_tetromino * TILESIZE, TILESIZE, TILESIZE}, coordinates[i][0] * TILESIZE + 0 + (add_x)/3, coordinates[i][1] * TILESIZE + (550)/3, 3);
+		}
+
 
 
 		render_text("(c) 2025", font, (SDL_Color) {255, 255, 255}, 500, 750, centered);
@@ -336,7 +360,8 @@ int main(int argc, char* argv[])
 
 	init_drawing_context();
 
-	set_tetromino(&active_tetromino, tiles, tiles_count, TETROMINO_I);
+	set_tetromino(&active_tetromino, tiles, tiles_count, next_tetromino);
+	next_tetromino = (TetrominoTypes) (rand() % 7);
 	tiles_count += 4;
 
 	Mix_Music * music = Mix_LoadMUS("data/soundtrack.wav");
@@ -361,7 +386,8 @@ int main(int argc, char* argv[])
 		init_drawing_context();
 
 		tiles_count = 0;
-		set_tetromino(&active_tetromino, tiles, tiles_count, TETROMINO_I);
+		set_tetromino(&active_tetromino, tiles, tiles_count, next_tetromino);
+		next_tetromino = (TetrominoTypes) (rand() % 7);
 		tiles_count += 4;
 
 		score = 0;
@@ -369,6 +395,8 @@ int main(int argc, char* argv[])
 
 		run();
 	}
+
+	SDL_Quit();
 
 	cleanup();
 
