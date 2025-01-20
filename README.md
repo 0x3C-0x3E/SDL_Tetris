@@ -6,5 +6,4 @@ This is a tetris clone written in pure c using only SDL, SDL_image and SDL_mixer
 The classic tetris experience 
 
 ### Screenshots ###
-![grafik](https://github.com/user-attachments/assets/ad988096-f27b-4dcb-953e-7207672f22ba)
-
+![grafik](https://github.com/user-attachments/assets/ae161d45-19ff-4818-9eeb-8644d54e9cd3)
